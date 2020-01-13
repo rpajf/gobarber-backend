@@ -18,7 +18,7 @@ class ScheduleProvider {
       return res.status(401).json({ error: 'User is not a provider' });
     }
 
-    const schedule = await Appointment.findAll({
+    const appointments = await Appointment.findAll({
       where: {
         provider_id: req.userId,
         canceled_at: null,
@@ -46,7 +46,7 @@ class ScheduleProvider {
       ]
     });
 
-    return res.json(schedule);
+    return res.json(appointments);
   }
 }
 

@@ -12,14 +12,16 @@ class CancellationMail {
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento Cancelado',
-      text: 'Voce tem um novo cancelamento',
+      template: 'cancellation',
       context: {
         provider: appointment.provider.name,
         user: appointment.user.name,
         date: format(
-          parseISO(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+          parseISO(appointment.date),
+          "'dia' dd 'de' MMMM', às' H:mm'h'",
+          {
             locale: pt
-          })
+          }
         )
       }
     });
